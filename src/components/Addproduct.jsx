@@ -38,9 +38,9 @@ const Addproduct = () => {
     e.preventDefault();
 
     if (product.id) {
-      await dispatch(updateProduct(product));
+      dispatch(updateProduct(product));
     } else {
-      await dispatch(createProduct(product));
+      dispatch(createProduct(product));
     }
 
     setProduct({
@@ -66,7 +66,7 @@ const Addproduct = () => {
           <input
             type="text"
             name="title"
-            value={product.title}
+            value={product.title || ''}
             onChange={handleChange}
             placeholder="Enter product title"
             required
@@ -78,7 +78,7 @@ const Addproduct = () => {
           <input
             type="text"
             name="category"
-            value={product.category}
+            value={product.category || ''}
             onChange={handleChange}
             placeholder="Enter category"
             required
@@ -90,7 +90,7 @@ const Addproduct = () => {
           <input
             type="number"
             name="price"
-            value={product.price}
+            value={product.price || ''}
             onChange={handleChange}
             placeholder="Enter price"
             required
