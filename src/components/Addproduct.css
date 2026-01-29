@@ -1,0 +1,18 @@
+.product-card {
+  border-radius: 12px;
+  border: none;
+}
+
+.form-control {
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 8px;
+}

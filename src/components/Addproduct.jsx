@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createProduct, updateProduct } from "../features/productSlice";
+import "./Addproduct.css";
 
 const Addproduct = () => {
   const dispatch = useDispatch();
@@ -34,54 +35,67 @@ const Addproduct = () => {
       await dispatch(createProduct(product));
     }
 
-    setProduct({
-      title: "",
-      category: "",
-      price: "",
-    });
+    setProduct({ title: "", category: "", price: "" });
     navigate("/view-product");
   };
 
   return (
     <div className="container mt-5">
-      <div className="col-md-6 mx-auto">
-        <form onSubmit={handleSubmit}>
-          <h2 className="text-center mb-4">
-            {product.id ? "Update Product" : "Add Product"}
-          </h2>
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card product-card shadow-sm">
+            <div className="card-body p-4">
+              <h3 className="text-center mb-4 fw-bold">
+                {product.id ? "Update Product" : "Add New Product"}
+              </h3>
 
-          <label className="form-label">Product Title :</label>
-          <input
-            className="form-control mb-3"
-            name="title"
-            value={product.title || ""}
-            onChange={handleChange}
-            required
-          />
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label className="form-label">Product Title</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title"
+                    value={product.title}
+                    onChange={handleChange}
+                    placeholder="Enter product title"
+                    required
+                  />
+                </div>
 
-          <label className="form-label">Product Category :</label>
-          <input
-            className="form-control mb-3"
-            name="category"
-            value={product.category || ""}
-            onChange={handleChange}
-            required
-          />
+                <div className="mb-3">
+                  <label className="form-label">Category</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="category"
+                    value={product.category}
+                    onChange={handleChange}
+                    placeholder="Enter category"
+                    required
+                  />
+                </div>
 
-          <label className="form-label">Product Price :</label>
-          <input
-            type="number"
-            className="form-control mb-3"
-            name="price"
-            value={product.price || ""}
-            onChange={handleChange}
-            required
-          />
+                <div className="mb-4">
+                  <label className="form-label">Price</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="price"
+                    value={product.price}
+                    onChange={handleChange}
+                    placeholder="Enter price"
+                    required
+                  />
+                </div>
 
-          <button className="btn btn-primary w-100">
-            {product.id ? "Update" : "Submit"}
-          </button>
-        </form>
+                <button className="btn btn-primary w-100">
+                  {product.id ? "Update Product" : "Add Product"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
