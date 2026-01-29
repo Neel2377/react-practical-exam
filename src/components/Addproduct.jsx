@@ -8,8 +8,14 @@ const Addproduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const editData = useSelector((state) => state.products.editData);
-
   const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     if (editData && editData.id) {
@@ -43,79 +49,73 @@ const Addproduct = () => {
       dispatch(createProduct(product));
     }
 
-    setProduct({
-      title: "",
-      category: "",
-      price: "",
-      image: "",
-    });
+    setProduct({});
 
     navigate("/view-product");
   };
 
   return (
-  <div className="add-product-page">
-    <div className="add-product-card">
-      <h2 className="title">
-        {product.id ? "Update Product" : "Add New Product"}
-      </h2>
+    <div className="add-product-page">
+      <div className="add-product-card">
+        <h2 className="title fw-bold fs-3 mb-5">
+          {product.id ? "Update Product" : "Add New Product"}
+        </h2>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Product Title</label>
-          <input
-            type="text"
-            name="title"
-            value={product.title || ''}
-            onChange={handleChange}
-            placeholder="Enter product title"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Category</label>
-          <input
-            type="text"
-            name="category"
-            value={product.category || ''}
-            onChange={handleChange}
-            placeholder="Enter category"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Price</label>
-          <input
-            type="number"
-            name="price"
-            value={product.price || ''}
-            onChange={handleChange}
-            placeholder="Enter price"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Product Image</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-        </div>
-
-        {product.image && (
-          <div className="image-preview">
-            <img src={product.image} alt="preview" />
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="fs-6">Product Title :</label>
+            <input
+              type="text"
+              name="title"
+              value={product.title || ""}
+              onChange={handleChange}
+              placeholder="Enter product title"
+              required
+            />
           </div>
-        )}
 
-        <button type="submit" className="submit-btn">
-          {product.id ? "Update Product" : "Add Product"}
-        </button>
-      </form>
+          <div className="form-group">
+            <label className="fs-6">Product Category :</label>
+            <input
+              type="text"
+              name="category"
+              value={product.category || ""}
+              onChange={handleChange}
+              placeholder="Enter category"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="fs-6">Product Price :</label>
+            <input
+              type="number"
+              name="price"
+              value={product.price || ""}
+              onChange={handleChange}
+              placeholder="Enter price"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="fs-6">Product Image :</label>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </div>
+
+          {product.image && (
+            <div className="image-preview">
+              <img src={product.image} alt="preview" />
+            </div>
+          )}
+
+          <button type="submit" className="submit-btn">
+            {product.id ? "Update Product" : "Add Product"}
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-);
-
+  );
 };
 
 export default Addproduct;

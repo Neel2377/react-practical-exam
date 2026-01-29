@@ -11,7 +11,7 @@ export const createProduct = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // DELETE
@@ -24,7 +24,7 @@ export const deleteProduct = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // READ
@@ -37,7 +37,7 @@ export const getAllProducts = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // UPDATE
@@ -47,13 +47,13 @@ export const updateProduct = createAsyncThunk(
     try {
       const response = await apiIntance.patch(
         `/products/${product.id}`,
-        product
+        product,
       );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 const productSlice = createSlice({
@@ -65,7 +65,7 @@ const productSlice = createSlice({
   reducers: {
     editProduct: (state, action) => {
       state.editData = state.products.find(
-        (product) => product.id === action.payload
+        (product) => product.id === action.payload,
       );
     },
   },
@@ -76,7 +76,7 @@ const productSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter(
-          (product) => product.id !== action.payload
+          (product) => product.id !== action.payload,
         );
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
@@ -84,7 +84,7 @@ const productSlice = createSlice({
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.products = state.products.map((product) =>
-          product.id === action.payload.id ? action.payload : product
+          product.id === action.payload.id ? action.payload : product,
         );
         state.editData = {};
       });
