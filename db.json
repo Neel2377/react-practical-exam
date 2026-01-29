@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "id": "04bd",
+      "title": "Consequatur Officia",
+      "category": "Officia explicabo I",
+      "price": "861"
+    },
+    {
+      "id": "2f03",
+      "title": "Illum deleniti elig",
+      "category": "Exercitationem fuga",
+      "price": "145"
+    },
+    {
+      "id": "e5a4",
+      "title": "Atque voluptas sunt ",
+      "category": "At optio ullamco mi",
+      "price": "259"
+    },
+    {
+      "id": "6359",
+      "title": "Fugit saepe aut odi",
+      "category": "Dolor totam qui aliq",
+      "price": "784"
+    },
+    {
+      "id": "45ec",
+      "title": "Sequi aute perferend",
+      "category": "Dolore facere odit m",
+      "price": "919"
+    }
+  ]
+}
