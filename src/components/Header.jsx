@@ -43,8 +43,6 @@ const Header = () => {
         {/* User Area */}
         {user && (
           <div className="user-area">
-            <div className="avatar">{user.name.charAt(0).toUpperCase()}</div>
-
             <span className="welcome-text">{user.name}</span>
 
             <button className="logout-btn" onClick={handleLogout}>
