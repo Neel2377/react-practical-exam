@@ -5,7 +5,7 @@ import {
   getAllProducts,
   deleteProduct,
   editProduct,
-} from "../features/productSlice.js";
+} from "../features/productSlice";
 import "./Viewproduct.css";
 
 const Viewproduct = () => {
@@ -42,19 +42,16 @@ const Viewproduct = () => {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-11">
-          <div className="card shadow-sm product-table-card">
+          <div className="card product-table-card shadow-sm">
             <div className="card-body p-4">
-              <h3 className="text-center fw-bold mb-4">
-                Product List
-              </h3>
+              <h3 className="text-center fw-bold mb-4">Product List</h3>
 
-              {/* Search & Sort */}
               <div className="row g-3 mb-4">
                 <div className="col-md-6">
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Search by product title"
+                    placeholder="Search by title"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                   />
@@ -75,12 +72,12 @@ const Viewproduct = () => {
                 </div>
               </div>
 
-              {/* Table */}
               <div className="table-responsive">
-                <table className="table align-middle table-hover">
+                <table className="table table-hover align-middle">
                   <thead className="table-light">
                     <tr>
                       <th>#</th>
+                      <th>Image</th>
                       <th>Title</th>
                       <th>Category</th>
                       <th>Price</th>
@@ -93,6 +90,17 @@ const Viewproduct = () => {
                       filteredProducts.map((p, i) => (
                         <tr key={p.id}>
                           <td>{i + 1}</td>
+                          <td>
+                            {p.image ? (
+                              <img
+                                src={p.image}
+                                alt={p.title}
+                                className="product-img"
+                              />
+                            ) : (
+                              <span className="text-muted">No Image</span>
+                            )}
+                          </td>
                           <td>{p.title}</td>
                           <td>{p.category}</td>
                           <td>₹ {p.price}</td>
@@ -103,7 +111,6 @@ const Viewproduct = () => {
                             >
                               Delete
                             </button>
-
                             <button
                               className="btn btn-outline-warning btn-sm"
                               onClick={() => handleEdit(p.id)}
@@ -115,7 +122,7 @@ const Viewproduct = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="5" className="text-center text-muted py-4">
+                        <td colSpan="6" className="text-center text-muted py-4">
                           No products found
                         </td>
                       </tr>

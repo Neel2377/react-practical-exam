@@ -9,11 +9,7 @@ const Addproduct = () => {
   const navigate = useNavigate();
   const editData = useSelector((state) => state.products.editData);
 
-  const [product, setProduct] = useState({
-    title: "",
-    category: "",
-    price: "",
-  });
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     if (editData && editData.id) {
@@ -26,6 +22,18 @@ const Addproduct = () => {
     setProduct({ ...product, [name]: value });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProduct({ ...product, image: reader.result });
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,7 +43,13 @@ const Addproduct = () => {
       await dispatch(createProduct(product));
     }
 
-    setProduct({ title: "", category: "", price: "" });
+    setProduct({
+      title: "",
+      category: "",
+      price: "",
+      image: "",
+    });
+
     navigate("/view-product");
   };
 
@@ -45,8 +59,8 @@ const Addproduct = () => {
         <div className="col-md-6">
           <div className="card product-card shadow-sm">
             <div className="card-body p-4">
-              <h3 className="text-center mb-4 fw-bold">
-                {product.id ? "Update Product" : "Add New Product"}
+              <h3 className="text-center fw-bold mb-4">
+                {product.id ? "Update Product" : "Add Product"}
               </h3>
 
               <form onSubmit={handleSubmit}>
@@ -58,7 +72,6 @@ const Addproduct = () => {
                     name="title"
                     value={product.title}
                     onChange={handleChange}
-                    placeholder="Enter product title"
                     required
                   />
                 </div>
@@ -71,12 +84,11 @@ const Addproduct = () => {
                     name="category"
                     value={product.category}
                     onChange={handleChange}
-                    placeholder="Enter category"
                     required
                   />
                 </div>
 
-                <div className="mb-4">
+                <div className="mb-3">
                   <label className="form-label">Price</label>
                   <input
                     type="number"
@@ -84,10 +96,29 @@ const Addproduct = () => {
                     name="price"
                     value={product.price}
                     onChange={handleChange}
-                    placeholder="Enter price"
                     required
                   />
                 </div>
+
+                <div className="mb-3">
+                  <label className="form-label">Product Image</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                  />
+                </div>
+
+                {product.image && (
+                  <div className="text-center mb-4">
+                    <img
+                      src={product.image}
+                      alt="preview"
+                      className="img-preview"
+                    />
+                  </div>
+                )}
 
                 <button className="btn btn-primary w-100">
                   {product.id ? "Update Product" : "Add Product"}
