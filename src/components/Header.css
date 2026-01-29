@@ -1,7 +1,30 @@
 .nav-link {
+  position: relative;
+  padding: 6px 0;
+  color: #344054;
   transition: color 0.2s ease;
 }
 
-.nav-link:hover {
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #0d6efd;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
   color: #0d6efd;
+}
+.navbar {
+  z-index: 1000;
 }

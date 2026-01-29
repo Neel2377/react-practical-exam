@@ -1,18 +1,72 @@
+/* Card wrapper */
 .product-table-card {
-  border-radius: 14px;
-  border: none;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #eef0f3;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
 }
 
-.table th {
+/* Table */
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  background: #f8fafc;
   font-weight: 600;
+  font-size: 0.9rem;
+  color: #475467;
+  border-bottom: 1px solid #eaecf0;
 }
 
+.table tbody td {
+  padding: 14px 12px;
+  vertical-align: middle;
+  font-size: 0.95rem;
+  color: #101828;
+  border-top: 1px solid #f1f3f5;
+}
+
+/* Hover row */
+.table-hover tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Inputs */
 .form-control,
 .form-select {
-  border-radius: 8px;
-  padding: 10px 12px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid #d0d5dd;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.form-control::placeholder {
+  color: #98a2b3;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+}
+
+/* Buttons */
 .btn {
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Action buttons spacing */
+.btn + .btn {
+  margin-left: 6px;
 }

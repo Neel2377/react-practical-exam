@@ -1,18 +1,59 @@
+/* Card */
 .product-card {
-  border-radius: 12px;
+  border-radius: 16px;
+  border: 1px solid #eef0f3;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #344054;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.form-control {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d0d5dd;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #98a2b3;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+}
+
+/* Buttons */
+.btn {
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Primary button tweak */
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #4f8cff);
   border: none;
 }
 
-.form-control {
-  padding: 10px 12px;
-  border-radius: 8px;
-}
-
-.form-label {
-  font-weight: 500;
-}
-
-.btn {
-  padding: 10px;
-  border-radius: 8px;
+/* Form spacing */
+.mb-3,
+.mb-4 {
+  margin-bottom: 1.25rem;
 }
