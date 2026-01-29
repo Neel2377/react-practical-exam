@@ -43,7 +43,7 @@ const Header = () => {
         {/* User Area */}
         {user && (
           <div className="user-area">
-            <span className="welcome-text">{user.name}</span>
+            <span className="welcome-text">Welcome, {user.name}</span>
 
             <button className="logout-btn" onClick={handleLogout}>
               Logout
