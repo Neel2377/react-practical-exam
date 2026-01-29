@@ -10,7 +10,6 @@ const App = () => {
       <Header />
 
       <Routes>
-        
         <Route path="/" element={<Addproduct />} />
         <Route path="/view-product" element={<Viewproduct />} />
       </Routes>
