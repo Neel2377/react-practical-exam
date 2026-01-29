@@ -54,82 +54,68 @@ const Addproduct = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card product-card shadow-sm">
-            <div className="card-body p-4">
-              <h3 className="text-center fw-bold mb-4">
-                {product.id ? "Update Product" : "Add Product"}
-              </h3>
+  <div className="add-product-page">
+    <div className="add-product-card">
+      <h2 className="title">
+        {product.id ? "Update Product" : "Add New Product"}
+      </h2>
 
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label">Product Title</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="title"
-                    value={product.title}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label className="form-label">Category</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="category"
-                    value={product.category}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label className="form-label">Price</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="price"
-                    value={product.price}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label className="form-label">Product Image</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                  />
-                </div>
-
-                {product.image && (
-                  <div className="text-center mb-4">
-                    <img
-                      src={product.image}
-                      alt="preview"
-                      className="img-preview"
-                    />
-                  </div>
-                )}
-
-                <button className="btn btn-primary w-100">
-                  {product.id ? "Update Product" : "Add Product"}
-                </button>
-              </form>
-            </div>
-          </div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Product Title</label>
+          <input
+            type="text"
+            name="title"
+            value={product.title}
+            onChange={handleChange}
+            placeholder="Enter product title"
+            required
+          />
         </div>
-      </div>
+
+        <div className="form-group">
+          <label>Category</label>
+          <input
+            type="text"
+            name="category"
+            value={product.category}
+            onChange={handleChange}
+            placeholder="Enter category"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Price</label>
+          <input
+            type="number"
+            name="price"
+            value={product.price}
+            onChange={handleChange}
+            placeholder="Enter price"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Product Image</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+        </div>
+
+        {product.image && (
+          <div className="image-preview">
+            <img src={product.image} alt="preview" />
+          </div>
+        )}
+
+        <button type="submit" className="submit-btn">
+          {product.id ? "Update Product" : "Add Product"}
+        </button>
+      </form>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Addproduct;

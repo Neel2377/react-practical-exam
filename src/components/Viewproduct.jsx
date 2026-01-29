@@ -39,104 +39,85 @@ const Viewproduct = () => {
     });
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-11">
-          <div className="card product-table-card shadow-sm">
-            <div className="card-body p-4">
-              <h3 className="text-center fw-bold mb-4">Product List</h3>
+  <div className="view-product-page">
+    <div className="view-header">
+      <h2>Product Inventory</h2>
 
-              <div className="row g-3 mb-4">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search by title"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                </div>
+      <div className="controls">
+        <input
+          type="text"
+          placeholder="Search product..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-                <div className="col-md-4">
-                  <select
-                    className="form-select"
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                  >
-                    <option value="">Sort Products</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
-                    <option value="title-asc">Title: A to Z</option>
-                    <option value="title-desc">Title: Z to A</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="table-responsive">
-                <table className="table table-hover align-middle">
-                  <thead className="table-light">
-                    <tr>
-                      <th>#</th>
-                      <th>Image</th>
-                      <th>Title</th>
-                      <th>Category</th>
-                      <th>Price</th>
-                      <th className="text-center">Actions</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {filteredProducts.length ? (
-                      filteredProducts.map((p, i) => (
-                        <tr key={p.id}>
-                          <td>{i + 1}</td>
-                          <td>
-                            {p.image ? (
-                              <img
-                                src={p.image}
-                                alt={p.title}
-                                className="product-img"
-                              />
-                            ) : (
-                              <span className="text-muted">No Image</span>
-                            )}
-                          </td>
-                          <td>{p.title}</td>
-                          <td>{p.category}</td>
-                          <td>₹ {p.price}</td>
-                          <td className="text-center">
-                            <button
-                              className="btn btn-outline-danger btn-sm me-2"
-                              onClick={() => dispatch(deleteProduct(p.id))}
-                            >
-                              Delete
-                            </button>
-                            <button
-                              className="btn btn-outline-warning btn-sm"
-                              onClick={() => handleEdit(p.id)}
-                            >
-                              Edit
-                            </button>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan="6" className="text-center text-muted py-4">
-                          No products found
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-          </div>
-        </div>
+        <select value={sort} onChange={(e) => setSort(e.target.value)}>
+          <option value="">Sort By</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="title-asc">Title: A → Z</option>
+          <option value="title-desc">Title: Z → A</option>
+        </select>
       </div>
     </div>
-  );
+
+    <div className="product-table-wrapper">
+      <table className="product-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {filteredProducts.length ? (
+            filteredProducts.map((p, i) => (
+              <tr key={p.id}>
+                <td>{i + 1}</td>
+                <td>
+                  {p.image ? (
+                    <img src={p.image} alt={p.title} />
+                  ) : (
+                    <span className="no-img">No Image</span>
+                  )}
+                </td>
+                <td>{p.title}</td>
+                <td>{p.category}</td>
+                <td className="price">₹ {p.price}</td>
+                <td>
+                  <button
+                    className="btn delete"
+                    onClick={() => dispatch(deleteProduct(p.id))}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="btn edit"
+                    onClick={() => handleEdit(p.id)}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="empty">
+                No products found
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
+
 };
 
 export default Viewproduct;
